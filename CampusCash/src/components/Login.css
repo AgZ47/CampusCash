@@ -92,6 +92,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  .names {
+    color: black;
+  }
   
   .logo {
     width: 80px; /* Increased logo size for prominence */
@@ -107,14 +111,15 @@
   
   .input-container {
     width: 100%;
+    padding-top: 8%;
   }
   
   .input-group {
     display: flex;
     align-items: center;
     margin: 10px 0; /* Spacing between input groups */
-    padding: 15px 20px; /* Increased padding for a larger input box */
-    border: 1px solid black;
+    padding: 5px 15px; /* Increased padding for a larger input box */
+    border: 2px solid black;
     border-radius: 45px;
     width: 100%;
   }

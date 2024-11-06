@@ -29,10 +29,12 @@ function Login() {
 
         <div className="right-panel">
           <div className="input-container">
+            <h3 className="names">Student ID</h3>
             <div className="input-group">
               <img src="id.jpg" alt="Student Icon" />
               <input type="text" placeholder="Enter Student ID" />
             </div>
+            <h3 className="names">Password</h3>
             <div className="input-group">
               <img src="pass.png" alt="Password Icon" />
               <input type="password" placeholder="Enter password" />
