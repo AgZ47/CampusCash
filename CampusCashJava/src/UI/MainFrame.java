@@ -39,12 +39,12 @@ public class MainFrame extends JFrame {
         mainPanel.add(logoPanel, BorderLayout.NORTH);
 
         // Large logo images
-        ImageIcon largeLogo1 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//logoh.png");
+        ImageIcon largeLogo1 = new ImageIcon("CampusCashJava\\Images\\logoh.png");
         JLabel logo1Label = new JLabel(new ImageIcon(largeLogo1.getImage().getScaledInstance(513, 106, Image.SCALE_SMOOTH)));
         logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoPanel.add(logo1Label);
 
-        ImageIcon largeLogo2 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//Mits.png");
+        ImageIcon largeLogo2 = new ImageIcon("CampusCashJava\\Images\\Mits.png");
         JLabel logo2Label = new JLabel(new ImageIcon(largeLogo2.getImage().getScaledInstance(294, 105, Image.SCALE_SMOOTH)));
         logo2Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoPanel.add(logo2Label);
@@ -69,9 +69,9 @@ public class MainFrame extends JFrame {
         mainPanel.add(formContainer, BorderLayout.CENTER);
 
         // Input fields with icons
-        JTextField usernameField = addInputField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//store.png", "Enter Your Store ID", 50, false);
-        JTextField nameField = addInputField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//user.png", "Enter Your Name", 130, false);
-        JPasswordField passwordField = (JPasswordField) addInputField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//pass.png", "Enter Your Password", 210, true);
+        JTextField usernameField = addInputField(formPanel, "CampusCashJava\\Images\\store.png", "Enter Your Store ID", 50, false);
+        JTextField nameField = addInputField(formPanel, "CampusCashJava\\Images\\user.png", "Enter Your Name", 130, false);
+        JPasswordField passwordField = (JPasswordField) addInputField(formPanel, "CampusCashJava\\Images\\pass.png", "Enter Your Password", 210, true);
 
         // Login button with updated size and color
         JButton loginButton = new JButton("LOGIN");
@@ -269,13 +269,13 @@ public class StaffFrame extends JFrame {
         mainPanel.add(logoPanel, BorderLayout.NORTH);
 
         // Large logo images
-        ImageIcon largeLogo1 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//logo.png");
+        ImageIcon largeLogo1 = new ImageIcon("CampusCashJava\\Images\\logoh.png");
         JLabel logo1Label = new JLabel(
                 new ImageIcon(largeLogo1.getImage().getScaledInstance(500, 100, Image.SCALE_SMOOTH)));
         logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoPanel.add(logo1Label);
 
-        ImageIcon largeLogo2 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//Mits.png");
+        ImageIcon largeLogo2 = new ImageIcon("CampusCashJava\\Images\\Mits.png");
         JLabel logo2Label = new JLabel(
                 new ImageIcon(largeLogo2.getImage().getScaledInstance(250, 110, Image.SCALE_SMOOTH)));
         logo2Label.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -301,9 +301,9 @@ public class StaffFrame extends JFrame {
         mainPanel.add(formContainer, BorderLayout.CENTER);
 
         // Input fields with icons
-        JTextField staffIDField = MainFrame.addInputField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//id.jpg", "Enter Your Staff ID", 50, false);
-        JTextField staffNameField = MainFrame.addInputField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//user.png", "Enter Your Name", 130, false);
-        JTextField staffpassField = MainFrame.addInputField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//pass.png", "Enter Password", 210, true);
+        JTextField staffIDField = MainFrame.addInputField(formPanel, "CampusCashJava\\Images\\id.jpg", "Enter Your Staff ID", 50, false);
+        JTextField staffNameField = MainFrame.addInputField(formPanel, "CampusCashJava\\Images\\user.png", "Enter Your Name", 130, false);
+        JTextField staffpassField = MainFrame.addInputField(formPanel, "CampusCashJava\\Images\\pass.png", "Enter Password", 210, true);
         // Create a password field for password input
         
 
@@ -406,12 +406,12 @@ public class StorePage extends JFrame {
         rightPanel.add(welcomeLabel);
 
         // Large logo images
-        ImageIcon largeLogo1 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//logoh.png");
+        ImageIcon largeLogo1 = new ImageIcon("CampusCashJava\\Images\\logoh.png");
         JLabel logo1Label = new JLabel(new ImageIcon(largeLogo1.getImage().getScaledInstance(513, 106, Image.SCALE_SMOOTH)));
         logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoCenterPanel.add(logo1Label);
 
-        ImageIcon largeLogo2 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//Mits.png");
+        ImageIcon largeLogo2 = new ImageIcon("CampusCashJava\\Images\\Mits.png");
         JLabel logo2Label = new JLabel(new ImageIcon(largeLogo2.getImage().getScaledInstance(294, 105, Image.SCALE_SMOOTH)));
         logo2Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoCenterPanel.add(logo2Label);
@@ -436,7 +436,7 @@ public class StorePage extends JFrame {
         formPanel.setPreferredSize(new Dimension(600, 400));
         contentPanel.add(formPanel);
 
-        ImageIcon backIcon = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//back.png");
+        ImageIcon backIcon = new ImageIcon("CampusCashJava\\Images\\Back.png");
         JLabel backLabel = new JLabel(new ImageIcon(backIcon.getImage().getScaledInstance(26, 43, Image.SCALE_SMOOTH)));
         backLabel.setBounds(5, 20, 26, 42);
         formPanel.add(backLabel);
@@ -451,16 +451,16 @@ public class StorePage extends JFrame {
         int yPosition = 60;
         int spacing = 65;
 
-        studentIdField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//Id.jpg", "Enter Student Id", yPosition);
+        studentIdField = addPlaceholderField(formPanel, "CampusCashJava\\Images\\id.jpg", "Enter Student Id", yPosition);
         yPosition += spacing;
 
-        studentNameField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//user.png", "Enter Student Name", yPosition);
+        studentNameField = addPlaceholderField(formPanel, "CampusCashJava\\Images\\user.png", "Enter Student Name", yPosition);
         yPosition += spacing;
 
-        itemNameField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//store.png", "Enter Item Name", yPosition);
+        itemNameField = addPlaceholderField(formPanel, "CampusCashJava\\Images\\store.png", "Enter Item Name", yPosition);
         yPosition += spacing;
 
-        amountField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//ammnt.png", "Enter Amount", yPosition);
+        amountField = addPlaceholderField(formPanel, "CampusCashJava\\Images\\ammnt.png", "Enter Amount", yPosition);
 
         JButton addToListButton = new JButton("ADD TO LIST");
         addToListButton.setFont(new Font("SansSerif", Font.BOLD, 18));
@@ -609,12 +609,12 @@ public class StaffPage extends JFrame {
         rightPanel.add(welcomeLabel);
 
         // Large logo images
-        ImageIcon largeLogo1 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//logoh.png");
+        ImageIcon largeLogo1 = new ImageIcon("CampusCashJava\\Images\\logoh.png");
         JLabel logo1Label = new JLabel(new ImageIcon(largeLogo1.getImage().getScaledInstance(513, 106, Image.SCALE_SMOOTH)));
         logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoCenterPanel.add(logo1Label);
 
-        ImageIcon largeLogo2 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//Mits.png");
+        ImageIcon largeLogo2 = new ImageIcon("CampusCashJava\\Images\\Mits.png");
         JLabel logo2Label = new JLabel(new ImageIcon(largeLogo2.getImage().getScaledInstance(294, 105, Image.SCALE_SMOOTH)));
         logo2Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoCenterPanel.add(logo2Label);
@@ -641,7 +641,7 @@ public class StaffPage extends JFrame {
         formPanel.setPreferredSize(new Dimension(600, 400));
         contentPanel.add(formPanel);
 
-        ImageIcon backIcon = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//back.png");
+        ImageIcon backIcon = new ImageIcon("CampusCashJava\\Images\\Back.png");
         JLabel backLabel = new JLabel(new ImageIcon(backIcon.getImage().getScaledInstance(26, 43, Image.SCALE_SMOOTH)));
         backLabel.setBounds(5, 20, 26, 42);
         formPanel.add(backLabel);
@@ -657,13 +657,13 @@ public class StaffPage extends JFrame {
         int yPosition = 80; // Initial Y position for the first field
         int spacing = 79; // Space between fields
 
-        JTextField idField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//Id.jpg", "Enter Student Id", yPosition);
+        JTextField idField = addPlaceholderField(formPanel, "CampusCashJava\\Images\\id.jpg", "Enter Student Id", yPosition);
         yPosition += spacing;
 
-        JTextField nameField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//user.png", "Enter Student Name", yPosition);
+        JTextField nameField = addPlaceholderField(formPanel, "CampusCashJava\\Images\\user.png", "Enter Student Name", yPosition);
         yPosition += spacing;
 
-        JTextField amountField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//ammnt.png", "Enter Amount", yPosition);
+        JTextField amountField = addPlaceholderField(formPanel, "CampusCashJava\\Images\\ammnt.png", "Enter Amount", yPosition);
 
         // Add to List button
         JButton addToListButton = new JButton("UPDATE");
@@ -767,12 +767,12 @@ public class StaffPage extends JFrame {
             logoPanel.setLayout(new BoxLayout(logoPanel, BoxLayout.Y_AXIS));
             mainPanel.add(logoPanel, BorderLayout.NORTH);
 
-            ImageIcon largeLogo1 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//logoh.png");
+            ImageIcon largeLogo1 = new ImageIcon("CampusCashJava\\Images\\logoh.png");
         JLabel logo1Label = new JLabel(new ImageIcon(largeLogo1.getImage().getScaledInstance(513, 106, Image.SCALE_SMOOTH)));
         logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoPanel.add(logo1Label);
 
-        ImageIcon largeLogo2 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//Mits.png");
+        ImageIcon largeLogo2 = new ImageIcon("CampusCashJava\\Images\\Mits.png");
         JLabel logo2Label = new JLabel(new ImageIcon(largeLogo2.getImage().getScaledInstance(294, 105, Image.SCALE_SMOOTH)));
         logo2Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoPanel.add(logo2Label);
@@ -802,7 +802,7 @@ backButtonPanel.setBackground(Color.WHITE);
 summaryPanel.add(backButtonPanel);
 
 // Set the back button's image
-ImageIcon backIcon = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//back.png");
+ImageIcon backIcon = new ImageIcon("CampusCashJava\\Images\\Back.png");
 JLabel backLabel = new JLabel(new ImageIcon(backIcon.getImage().getScaledInstance(26, 43, Image.SCALE_SMOOTH)));
 backLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 backButtonPanel.add(backLabel);
@@ -894,12 +894,12 @@ public class DueDetails extends JFrame {
         mainPanel.add(logoPanel, BorderLayout.NORTH);
 
         // Logo for the application
-        ImageIcon largeLogo1 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//logoh.png");
+        ImageIcon largeLogo1 = new ImageIcon("CampusCashJava\\Images\\logoh.png");
         JLabel logo1Label = new JLabel(new ImageIcon(largeLogo1.getImage().getScaledInstance(513, 106, Image.SCALE_SMOOTH)));
         logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoPanel.add(logo1Label);
 
-        ImageIcon largeLogo2 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//Mits.png");
+        ImageIcon largeLogo2 = new ImageIcon("CampusCashJava\\Images\\Mits.png");
         JLabel logo2Label = new JLabel(new ImageIcon(largeLogo2.getImage().getScaledInstance(294, 105, Image.SCALE_SMOOTH)));
         logo2Label.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoPanel.add(logo2Label);
@@ -932,7 +932,7 @@ public class DueDetails extends JFrame {
         // Set the back button's image
 
         
-        ImageIcon backIcon = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//back.png");
+        ImageIcon backIcon = new ImageIcon("CampusCashJava\\Images\\Back.png");
         JLabel backLabel = new JLabel(new ImageIcon(backIcon.getImage().getScaledInstance(26, 43, Image.SCALE_SMOOTH)));
         backLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         backButtonPanel.add(backLabel);
