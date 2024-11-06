@@ -34,17 +34,11 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ studentId });
     if (!user) {
-      console.log("User not found:", studentId);
       return res.status(400).json({ message: 'Invalid ID' });
     }
 
-    // Log stored hashed password and the entered password for verification
-    console.log("Stored hashed password:", user.password);
-    console.log("Entered password (plain text):", password);
-
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      console.log("Password mismatch for user:", studentId);
       return res.status(400).json({ message: 'Invalid Password' });
     }
 
