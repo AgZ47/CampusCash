@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-
+const Dues = require('../models/Dues'); // Add this line
 const router = express.Router();
 const JWT_SECRET = 'your_jwt_secret'; // Replace with a strong secret
 
@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Route to get user data after authentication
+// Route to get user data along with total dues after authentication
 router.get('/user', async (req, res) => {
   const token = req.headers['x-auth-token'];
   if (!token) return res.status(401).json({ message: 'No token, authorization denied' });
@@ -58,9 +58,48 @@ router.get('/user', async (req, res) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     const user = await User.findById(decoded.userId).select('-password');
-    res.json(user);
+
+    // Fetch all dues for the studentId and calculate total dues
+    const dues = await Dues.aggregate([
+      { $match: { studentId: user.studentId } },
+      { $group: { _id: "$studentId", totalDue: { $sum: "$dueAmount" } } }
+    ]);
+
+    const totalDue = dues.length > 0 ? dues[0].totalDue : 0; // Default to 0 if no dues found
+    res.json({ user, totalDue });
   } catch (err) {
     res.status(401).json({ message: 'Token is not valid' });
+  }
+});
+
+router.get('/user', async (req, res) => {
+  const token = req.headers['x-auth-token'];
+  if (!token) return res.status(401).json({ message: 'No token, authorization denied' });
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const user = await User.findById(decoded.userId).select('-password');
+
+    const dues = await Dues.aggregate([
+      { $match: { studentId: user.studentId } },
+      { $group: { _id: "$studentId", totalDue: { $sum: "$dueAmount" } } }
+    ]);
+
+    const totalDue = dues.length > 0 ? dues[0].totalDue : 0;
+    res.json({ user, totalDue });
+  } catch (err) {
+    res.status(401).json({ message: 'Token is not valid' });
+  }
+});
+
+// Route to get all dues for a specific studentId
+router.get('/dues/:studentId', async (req, res) => {
+  try {
+    const dues = await Dues.find({ studentId: req.params.studentId });
+    res.json(dues);
+  } catch (error) {
+    console.error('Error fetching dues:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
