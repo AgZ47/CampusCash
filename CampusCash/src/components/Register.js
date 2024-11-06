@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Register.css';
 
 function Register() {
+  const [formData, setFormData] = useState({
+    studentId: '',
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleRegister = async () => {
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      await axios.post('http://localhost:5000/api/auth/register', formData);
+      alert('Registration successful');
+    } catch (error) {
+      alert('Error registering user');
+    }
+  };
+
   return (
     <div className="register-container">
       <header className="header">
@@ -15,26 +40,26 @@ function Register() {
           <div className="input-container">
             <div className="input-group">
               <img src="id.jpg" alt="Student Icon" />
-              <input type="text" placeholder="Enter Student ID" />
+              <input type="text" name="studentId" placeholder="Enter Student ID" onChange={handleChange} />
             </div>
             <div className="input-group">
               <img src="user.png" alt="User Icon" />
-              <input type="text" placeholder="Enter Student Name" />
+              <input type="text" name="name" placeholder="Enter Student Name" onChange={handleChange} />
             </div>
             <div className="input-group">
               <img src="mail.png" alt="Email Icon" />
-              <input type="email" placeholder="Enter Email" />
+              <input type="email" name="email" placeholder="Enter Email" onChange={handleChange} />
             </div>
             <div className="input-group">
               <img src="pass.png" alt="Password Icon" />
-              <input type="password" placeholder="Enter Password" />
+              <input type="password" name="password" placeholder="Enter Password" onChange={handleChange} />
             </div>
             <div className="input-group">
               <img src="pass.png" alt="Confirm Password Icon" />
-              <input type="password" placeholder="Confirm Password" />
+              <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} />
             </div>
           </div>
-          <button className="register-buttonr">REGISTER</button>
+          <button onClick={handleRegister} className="register-buttonr">REGISTER</button>
         </div>
 
         <div className="register-right">
