@@ -94,13 +94,21 @@ html, body {
   padding: 0.5rem;
 }
 
+<<<<<<< HEAD
 .register-buttonr {
   background-color: black;
   color: white;
   padding: 0.5rem;
+=======
+.reg-button {
+  background-color: black;
+    color: white;
+  padding: 1rem 2rem;
+>>>>>>> 518631b6881b02780d8c70a5c762ca38f10f8044
   border: none;
-  border-radius: 20px;
+  border-radius: 45px;
   font-size: 1.2rem;
+  font-weight: bold;
   cursor: pointer;
   margin-top: 1.5rem;
   width: 50%;
@@ -114,6 +122,8 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-top-left-radius: 200px;
+  border-bottom-left-radius: 200px;
   align-items: center;
   background-color: #6e37ff;
   color: white;
@@ -133,12 +143,18 @@ html, body {
   margin-top: 1rem;
   font-size: 1rem;
   color: yellow;
+  font-weight: bold;
 }
 
 .switch-button {
   background-color: #6e37ff;
   color: yellow;
+<<<<<<< HEAD
   padding: 10px 20px;
+=======
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+>>>>>>> 518631b6881b02780d8c70a5c762ca38f10f8044
   border-radius:  45px;
   border: 3px solid black;
   font-size: 1rem;

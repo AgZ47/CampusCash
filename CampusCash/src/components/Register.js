@@ -34,7 +34,11 @@ function Register() {
               <input type="password" placeholder="Confirm Password" />
             </div>
           </div>
+<<<<<<< HEAD
           <button className="register-buttonr">REGISTER</button>
+=======
+          <button className="reg-button">REGISTER</button>
+>>>>>>> 518631b6881b02780d8c70a5c762ca38f10f8044
         </div>
 
         <div className="register-right">
