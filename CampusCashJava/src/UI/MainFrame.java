@@ -1,9 +1,9 @@
 package UI;
 
 import java.awt.*;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 
 public class MainFrame extends JFrame {
@@ -363,6 +363,12 @@ public class StaffFrame extends JFrame {
 
 
 public class StorePage extends JFrame {
+
+    private JTextField studentIdField;
+    private JTextField studentNameField;
+    private JTextField itemNameField;
+    private JTextField amountField;
+
     public StorePage(String storeName, String staffName) {
         setTitle("CampusCash - Store Page");
         setSize(1420, 800);
@@ -386,9 +392,11 @@ public class StorePage extends JFrame {
         logoCenterPanel.setBackground(new Color(10, 10, 30));
         logoCenterPanel.setLayout(new BoxLayout(logoCenterPanel, BoxLayout.Y_AXIS));
         logoPanel.add(logoCenterPanel, BorderLayout.CENTER);
-        JLabel welcomeLabel = new JLabel("Welcome, " + staffName+" ");
+
+        JLabel welcomeLabel = new JLabel("Welcome, " + staffName);
         welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
         welcomeLabel.setForeground(Color.WHITE);
+
         JPanel rightPanel = new JPanel();
         rightPanel.setBackground(new Color(10, 10, 30));
         rightPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -412,8 +420,6 @@ public class StorePage extends JFrame {
         storeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoCenterPanel.add(storeLabel);
 
-        // Right side panel for welcome text
-       
         logoPanel.add(rightPanel, BorderLayout.EAST);
 
         // Main content area
@@ -422,13 +428,11 @@ public class StorePage extends JFrame {
         contentPanel.setLayout(new GridBagLayout());
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        // Form panel with rounded corners
         JPanel formPanel = new RoundedPanel();
         formPanel.setLayout(null);
         formPanel.setPreferredSize(new Dimension(600, 400));
         contentPanel.add(formPanel);
 
-        // Back button with arrow icon
         ImageIcon backIcon = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//back.png");
         JLabel backLabel = new JLabel(new ImageIcon(backIcon.getImage().getScaledInstance(26, 43, Image.SCALE_SMOOTH)));
         backLabel.setBounds(5, 20, 26, 42);
@@ -441,22 +445,20 @@ public class StorePage extends JFrame {
             }
         });
 
-        // Placeholder input fields
-        int yPosition = 60; // Initial Y position for the first field
-        int spacing = 65; // Space between fields
+        int yPosition = 60;
+        int spacing = 65;
 
-        addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//Id.jpg", "Enter Student Id", yPosition);
+        studentIdField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//Id.jpg", "Enter Student Id", yPosition);
         yPosition += spacing;
 
-        addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//user.png", "Enter Student Name", yPosition);
+        studentNameField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//user.png", "Enter Student Name", yPosition);
         yPosition += spacing;
 
-        addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//store.png", "Enter Item Name", yPosition);
+        itemNameField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//store.png", "Enter Item Name", yPosition);
         yPosition += spacing;
 
-        addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//ammnt.png", "Enter Amount", yPosition);
+        amountField = addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//ammnt.png", "Enter Amount", yPosition);
 
-        // Add to List button
         JButton addToListButton = new JButton("ADD TO LIST");
         addToListButton.setFont(new Font("SansSerif", Font.BOLD, 18));
         addToListButton.setBackground(Color.BLACK);
@@ -464,12 +466,49 @@ public class StorePage extends JFrame {
         addToListButton.setBounds(200, yPosition + spacing, 200, 50);
         formPanel.add(addToListButton);
 
-        // Set custom focus traversal policy
-        setFocusTraversalPolicy(new CustomFocusTraversalPolicy());
+        // Add button listener with validation and navigation
+        addToListButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (validateInputs()) {
+                    String studentId = studentIdField.getText();
+                    String studentName = studentNameField.getText();
+                    String itemName = itemNameField.getText();
+                    String amount = amountField.getText();
+
+                    new TransactionSummaryPage(storeName, staffName, studentId, studentName, itemName, amount).setVisible(true);
+                    StorePage.this.dispose();
+                }
+            }
+        });
     }
 
-    // Helper method to add placeholder fields with focus listener
-    private void addPlaceholderField(JPanel panel, String iconPath, String placeholder, int yPosition) {
+    private boolean validateInputs() {
+        String studentId = studentIdField.getText();
+        String studentName = studentNameField.getText();
+        String itemName = itemNameField.getText();
+        String amountText = amountField.getText();
+
+        if (studentId.isEmpty() || studentName.isEmpty() || itemName.isEmpty() || amountText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields must be filled.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        try {
+            int amount = Integer.parseInt(amountText);
+            if (amount <= 0) {
+                JOptionPane.showMessageDialog(this, "Amount must be a positive number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Amount must be a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
+    private JTextField addPlaceholderField(JPanel panel, String iconPath, String placeholder, int yPosition) {
         ImageIcon icon = new ImageIcon(new ImageIcon(iconPath).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
         JLabel iconLabel = new JLabel(icon);
         iconLabel.setBounds(20, yPosition, 40, 40);
@@ -478,10 +517,9 @@ public class StorePage extends JFrame {
         JTextField textField = new JTextField(placeholder);
         textField.setBounds(80, yPosition, 480, 40);
         textField.setFont(new Font("SansSerif", Font.PLAIN, 16));
-        textField.setForeground(Color.GRAY); // Placeholder color
+        textField.setForeground(Color.GRAY);
         textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
 
-        // Focus listener for placeholder text
         textField.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent e) {
@@ -501,6 +539,7 @@ public class StorePage extends JFrame {
         });
 
         panel.add(textField);
+        return textField;
     }
 
     // Custom panel class for rounded corners
@@ -578,7 +617,7 @@ public class StaffPage extends JFrame {
         logoCenterPanel.add(logo2Label);
 
         // Staff name centered below logos
-        JLabel staffLabel = new JLabel(staffName.toUpperCase());
+        JLabel staffLabel = new JLabel("PAY DUE");
         staffLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
         staffLabel.setForeground(Color.WHITE);
         staffLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -599,9 +638,200 @@ public class StaffPage extends JFrame {
         formPanel.setPreferredSize(new Dimension(600, 400));
         contentPanel.add(formPanel);
 
+        ImageIcon backIcon = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//back.png");
+        JLabel backLabel = new JLabel(new ImageIcon(backIcon.getImage().getScaledInstance(26, 43, Image.SCALE_SMOOTH)));
+        backLabel.setBounds(5, 20, 26, 42);
+        formPanel.add(backLabel);
+        backLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        backLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                new StaffFrame().setVisible(true); // Assuming MainFrame is the login page
+                StaffPage.this.dispose();
+            }
+        });
+
+        // Placeholder input fields
+        int yPosition = 80; // Initial Y position for the first field
+        int spacing = 79; // Space between fields
+
+        addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//Id.jpg", "Enter Student Id", yPosition);
+        yPosition += spacing;
+
+        addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//user.png", "Enter Student Name", yPosition);
+        yPosition += spacing;
+
+        addPlaceholderField(formPanel, "C://Code//CampusCash//CampusCashJava//Images//ammnt.png", "Enter Amount", yPosition);
+
+        // Add to List button
+        JButton addToListButton = new JButton("UPDATE");
+        addToListButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+        addToListButton.setBackground(Color.BLACK);
+        addToListButton.setForeground(Color.WHITE);
+        addToListButton.setBounds(200, yPosition + spacing, 200, 50);
+        formPanel.add(addToListButton);
+
         // Set custom focus traversal policy
         setFocusTraversalPolicy(new CustomFocusTraversalPolicy());
     }
-}
 
+    // Helper method to add placeholder fields with focus listener
+    private void addPlaceholderField(JPanel panel, String iconPath, String placeholder, int yPosition) {
+        ImageIcon icon = new ImageIcon(new ImageIcon(iconPath).getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        JLabel iconLabel = new JLabel(icon);
+        iconLabel.setBounds(20, yPosition, 40, 40);
+        panel.add(iconLabel);
+
+        JTextField textField = new JTextField(placeholder);
+        textField.setBounds(80, yPosition, 480, 40);
+        textField.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        textField.setForeground(Color.GRAY); // Placeholder color
+        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true));
+
+        // Focus listener for placeholder text
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText(placeholder);
+                    textField.setForeground(Color.GRAY);
+                }
+            }
+        });
+
+        panel.add(textField);
+    }
+    }
+    
+
+
+
+    public class TransactionSummaryPage extends JFrame {
+        public TransactionSummaryPage(String storeName, String staffName, String studentId, String studentName, String itemName, String amount) {
+            setTitle("Transaction Summary");
+            setSize(1420, 800);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
+            setResizable(false);
+    
+            JPanel mainPanel = new JPanel();
+            mainPanel.setBackground(new Color(10, 10, 30));
+            mainPanel.setLayout(new BorderLayout());
+            add(mainPanel);
+    
+            JPanel logoPanel = new JPanel();
+            logoPanel.setBackground(new Color(10, 10, 30));
+            logoPanel.setLayout(new BoxLayout(logoPanel, BoxLayout.Y_AXIS));
+            mainPanel.add(logoPanel, BorderLayout.NORTH);
+
+            ImageIcon largeLogo1 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//logoh.png");
+        JLabel logo1Label = new JLabel(new ImageIcon(largeLogo1.getImage().getScaledInstance(513, 106, Image.SCALE_SMOOTH)));
+        logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        logoPanel.add(logo1Label);
+
+        ImageIcon largeLogo2 = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//Mits.png");
+        JLabel logo2Label = new JLabel(new ImageIcon(largeLogo2.getImage().getScaledInstance(294, 105, Image.SCALE_SMOOTH)));
+        logo2Label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        logoPanel.add(logo2Label);
+    
+           
+    
+            JLabel storeLabel = new JLabel(storeName.toUpperCase());
+            storeLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
+            storeLabel.setForeground(Color.WHITE);
+            storeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            logoPanel.add(storeLabel);
+    
+            JPanel contentPanel = new JPanel();
+            contentPanel.setBackground(new Color(10, 10, 30));
+            contentPanel.setLayout(new GridBagLayout());
+            mainPanel.add(contentPanel, BorderLayout.CENTER);
+    
+            JPanel summaryPanel = new RoundedPanel();
+            summaryPanel.setLayout(new BoxLayout(summaryPanel, BoxLayout.Y_AXIS));
+            summaryPanel.setPreferredSize(new Dimension(600, 400));
+            summaryPanel.setBackground(Color.WHITE);
+            contentPanel.add(summaryPanel);
+
+            // Back Button Panel aligned to the left
+JPanel backButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+backButtonPanel.setBackground(Color.WHITE);
+summaryPanel.add(backButtonPanel);
+
+// Set the back button's image
+ImageIcon backIcon = new ImageIcon("C://Code//CampusCash//CampusCashJava//Images//back.png");
+JLabel backLabel = new JLabel(new ImageIcon(backIcon.getImage().getScaledInstance(26, 43, Image.SCALE_SMOOTH)));
+backLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+backButtonPanel.add(backLabel);
+
+// Set action on back button
+backLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+    public void mouseClicked(java.awt.event.MouseEvent e) {
+        new StorePage(storeName, staffName).setVisible(true);
+        TransactionSummaryPage.this.dispose();
+    }
+});
+
+// Add a vertical strut to move the labels below the back button
+summaryPanel.add(Box.createRigidArea(new Dimension(0, 0))); // Increase vertical space below back button
+
+// Add student details with reduced spacing
+JLabel nameLabel = new JLabel("Name: " + studentName);
+nameLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+summaryPanel.add(nameLabel);
+
+summaryPanel.add(Box.createRigidArea(new Dimension(0, 30))); // Reduced space between labels
+
+JLabel idLabel = new JLabel("Id: " + studentId);
+idLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+idLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+summaryPanel.add(idLabel);
+
+summaryPanel.add(Box.createRigidArea(new Dimension(0, 35))); // Reduced space between labels
+
+JLabel itemLabel = new JLabel("Item: " + itemName);
+itemLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+itemLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+summaryPanel.add(itemLabel);
+
+summaryPanel.add(Box.createRigidArea(new Dimension(0, 35))); // Reduced space between labels
+
+JLabel amountLabel = new JLabel("Amount: ₹" + amount);
+amountLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+amountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+summaryPanel.add(amountLabel);
+
+summaryPanel.add(Box.createRigidArea(new Dimension(0, 35))); // Reduced space between labels
+
+JLabel oldDueLabel = new JLabel("Old Due: ₹0");
+oldDueLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+oldDueLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+summaryPanel.add(oldDueLabel);
+
+summaryPanel.add(Box.createRigidArea(new Dimension(0, 35))); // Reduced space between labels
+
+JLabel currentDueLabel = new JLabel("Current Due: ₹" + (Integer.parseInt(amount) + 0));
+currentDueLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+currentDueLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+summaryPanel.add(currentDueLabel);
+
+summaryPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+JLabel emptyforspace = new JLabel(" ");
+emptyforspace.setFont(new Font("SansSerif", Font.BOLD, 18));
+emptyforspace.setAlignmentX(Component.CENTER_ALIGNMENT);
+summaryPanel.add(emptyforspace);
+
+        }
+}
+    
+    
 }
