@@ -95,13 +95,14 @@ html, body {
   padding: 0.5rem;
 }
 
-.register-button {
+.reg-button {
   background-color: black;
-  color: white;
+    color: white;
   padding: 1rem 2rem;
   border: none;
-  border-radius: 20px;
+  border-radius: 45px;
   font-size: 1.2rem;
+  font-weight: bold;
   cursor: pointer;
   margin-top: 1.5rem;
   width: 50%;
@@ -113,6 +114,8 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-top-left-radius: 200px;
+  border-bottom-left-radius: 200px;
   align-items: center;
   background-color: #6e37ff;
   color: white;
@@ -132,14 +135,16 @@ html, body {
   margin-top: 1rem;
   font-size: 1rem;
   color: yellow;
+  font-weight: bold;
 }
 
 .switch-button {
-  background-color: black;
+  background-color: #6e37ff;
   color: yellow;
   padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 20px;
+  font-weight: bold;
+  border-radius:  45px;
+  border: 3px solid black;
   font-size: 1rem;
   cursor: pointer;
   text-decoration: none;

@@ -34,7 +34,7 @@ function Register() {
               <input type="password" placeholder="Confirm Password" />
             </div>
           </div>
-          <button className="register-button">REGISTER</button>
+          <button className="reg-button">REGISTER</button>
         </div>
 
         <div className="register-right">
