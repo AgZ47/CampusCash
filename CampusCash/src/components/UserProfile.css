@@ -62,7 +62,7 @@
   
   .subtitle {                         
     font-size: 1.7rem;
-    color: #6e37ff;
+    color: #ff0000;
   }
   
   .due-details {                   
@@ -113,7 +113,7 @@
   }
   
   .button {
-    background-color: #6e37ff;
+    background-color: #000000;
     color: white;
     padding: 10px 20px;
     border: none;
