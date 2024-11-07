@@ -62,7 +62,7 @@
 
 .subtitled {
     font-size: 1.5rem;
-    color: black;
+    color: rgb(255, 0, 0);
     font-weight: bold;
 }
 
@@ -73,8 +73,8 @@
 }
 
 .buttond {
-    background-color: #6e37ff;
-    color: #EEFF00;
+    background-color: #000000;
+    color: #ffffff;
     padding: 10px 20px;
     border: none;
     border-radius: 45px;
@@ -96,6 +96,6 @@
 }
 
 .item-text {
-    color: #EEFF00;
+    color: #ffff00;
     font-weight: bold;
 }
