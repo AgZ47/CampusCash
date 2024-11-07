@@ -269,7 +269,7 @@ public class StaffFrame extends JFrame {
         mainPanel.add(logoPanel, BorderLayout.NORTH);
 
         // Large logo images
-        ImageIcon largeLogo1 = new ImageIcon("CampusCashJava\\Images\\logoh.png");
+        ImageIcon largeLogo1 = new ImageIcon("C://Users//abyal//Desktop//test//dbms project//CampusCashJava//Images//logoh.png");
         JLabel logo1Label = new JLabel(
                 new ImageIcon(largeLogo1.getImage().getScaledInstance(500, 100, Image.SCALE_SMOOTH)));
         logo1Label.setAlignmentX(Component.CENTER_ALIGNMENT);
